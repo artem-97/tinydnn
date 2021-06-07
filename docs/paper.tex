@@ -1,0 +1,71 @@
+\documentclass[12pt, oneside, a4paper, openany]{scrarticle}
+\usepackage
+[
+        a4paper,% other options: a3paper, a5paper, etc
+        left=25mm,
+        right=15mm,
+        top=20mm,
+        bottom=20mm,
+]
+{geometry}
+\usepackage{setspace}
+\setstretch{1.5}
+
+
+%---------Russian-----------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%---------Russian-----------
+
+%---------Graphics-----------
+\usepackage{graphicx}
+\graphicspath{{./img}}
+
+\usepackage{tikz}
+%---------Graphics-----------
+
+%---------Maths-----------
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+%---------Maths-----------
+
+%---------Title-----------
+%\title{Работа}
+%---------Title-----------
+
+\begin{document}
+
+\section{Введение}
+
+
+Вообще говоря, нас будут интересовать две задачи:
+\begin{itemize}
+	\item отображение вектора из $\mathbb{R}^{n}$ в $\mathbb{R}$ (задача регрессии);
+	\item отображение вектора из $\mathbb{R}^{n}$ в $\{0,1\}$ (задача классификации).
+\end{itemize}
+
+Целью будет являться минимизация функционала ошибки на обучающей выборке:
+\begin{equation}
+	\mathscr{L}(\bm{x}, y | \bm{w}) \to min,
+\end{equation}
+где $\bm{x}$ -- входной вектор, кодирующий объект, $\bm{x} \in \mathbb{R}^n$; $\bm{y}$ -- правильный ответ для объекта $\bm{x}$; также $\mathscr{L}$ зависит от параметров выбранной модели (весов) -- $\bm{w}$.
+
+Решать данную оптимизационную задачу можно, например, методом градиентного спуска. Для этого нужно обновлять веса модели до сходимости (число итераций или стремления модуля разности функции ошибок с двух соседних шагов к нулю):
+\begin{equation}
+	\bm{w}_{new} = \bm{w}_{old} - \eta \nabla_{\bm{w}} \mathscr{L},
+\end{equation}
+где параметр $\eta$ называют скоростью обучения.
+
+Таким образом, основным является умение находить градиентов выбранной модели вдоль ее весов.
+
+\section{Нейронные сети}
+
+Для нас нейронной сетью (DNN) будет просто следующее нелинейное отображение:
+
+\begin{equation}
+DNN : \mathbb{R}^n \to \mathbb{R}
+\end{equation}
+\end{document}
