@@ -30,6 +30,7 @@
 \usepackage{bm}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
+\usepackage{mathtools}
 %---------Maths-----------
 
 %---------Title-----------
@@ -61,11 +62,91 @@
 
 Таким образом, основным является умение находить градиентов выбранной модели вдоль ее весов.
 
+\section{Датасет}
+В качестве примера далее мы возьмем модельный датасет MNIST \cite{LeCun1998}, который представляет из себя просто набор 60000 рукописных цифр с их подписями:
+
+%begin{figure}
+%	\includegraphics[width=0.7\textwidth]{mnist_sample}
+%\end{figure}
+
+В коде 
+
+
+
 \section{Нейронные сети}
 
-Для нас нейронной сетью (DNN) будет просто следующее нелинейное отображение:
+Далее будем придерживаться принятых в физике и геометрии обозначений:
+\begin{itemize}
+	\item производные будем обозначать как:
+	\begin{equation}
+		\partial_i f \coloneqq \frac{\partial f(\bm{x})}{\partial x_i},
+	\end{equation}
+	\item столбцы будем нумеровать верхними индексами:
+	\begin{equation}
+		x^i = 
+		\begin{bmatrix}
+    		x^1\\
+    		x^2\\
+    		\vdots \\
+    		x^n
+    	\end{bmatrix},
+	\end{equation}
+	а строки нижними:
+	\begin{equation}
+		x_i = 
+		\begin{bmatrix}
+    		x_1 & x_2 & \hdots & x_n
+    	\end{bmatrix}.
+	\end{equation}
+	\item подразумевам суммирование по повторяющимся индексам:
+	\begin{equation}
+		a_i^j x^i \coloneqq \sum_i a_i^j x^i.
+	\end{equation}
+\end{itemize}
+
+Для нас нейронной сетью (DNN) будет просто нелинейное отображение:
 
 \begin{equation}
-DNN : \mathbb{R}^n \to \mathbb{R}
+	DNN : \mathbb{R}^n \to \mathbb{R}^h,
 \end{equation}
+которое как-бы преобразует вектор $\bm{x}$ в вектор из какого-то другого пространства, к которому дальше применяется loss-функция:
+
+\begin{equation}
+	\mathscr{L} : \mathbb{R}^d \to \mathbb{R},
+\end{equation}
+
+Можно это записать в виде:
+\begin{equation}
+	\mathscr{L} \circ DNN.
+\end{equation}
+
+
+Применение к выходу нейронной сети функции ошибки можно записать следующим образом:
+\begin{equation}
+	\mathscr{L}(\bm{\tilde{x}}, y),
+\end{equation}
+где $\bm{\tilde{x}}$ -- выход нейронной сети, $y$ -- правильный ответ на данном объекте. Градиент данной функции будет:
+\begin{equation}
+	\partial_i\mathscr{L}
+\end{equation}
+
+
+Один слой нейронной сети можно представить следующим образом:
+\begin{equation}
+	\sigma(a_i^jx^i),
+\end{equation}
+
+где $\sigma$ -- нелинейная функция активации, $a_i^j$ -- матрица коэффициентов слоя. Тогда градиент слоя будет выражаться как:
+\begin{equation}
+	\frac{\partial }{\partial a^i_j} \sigma(a^i_j x^j)^i
+\end{equation}
+
+\section{Функция потерь}
+
+
+
+\newpage
+\bibliography{paper}
+\bibliographystyle{ieeetr}
+
 \end{document}
