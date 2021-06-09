@@ -4,17 +4,23 @@
 #include <climits>
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <tuple>
 #include <vector>
 
 class Dataset {
  public:
-  Dataset(const char* path);
-  std::size_t size() const;
-  std::vector<std::vector<int>> train();
-  std::vector<int> test();
+  Dataset(std::string path, bool train);
 };
 
 class MNIST : public Dataset {
  public:
-  MNIST(const char*);
+  MNIST(std::string path, bool train);
+  std::size_t size() const;
+  std::tuple<const std::vector<int>&, const std::vector<int>&> operator[](
+      std::size_t idx) const;
+
+ private:
+  std::vector<std::vector<int>> Xs_;
+  std::vector<std::vector<int>> ys_;
 };

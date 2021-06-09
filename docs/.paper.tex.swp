@@ -18,20 +18,29 @@
 \usepackage[russian]{babel}
 %---------Russian-----------
 
-%---------Graphics-----------
+%---------Graphics----------
 \usepackage{graphicx}
 \graphicspath{{./img}}
 
 \usepackage{tikz}
-%---------Graphics-----------
+%---------Graphics----------
 
-%---------Maths-----------
+%---------Maths-------------
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
-%---------Maths-----------
+%---------Maths------------
+
+%---------Code------------
+\usepackage{listings}
+
+\usepackage{color}
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
+%---------Code------------
 
 %---------Title-----------
 %\title{Работа}
@@ -61,15 +70,6 @@
 где параметр $\eta$ называют скоростью обучения.
 
 Таким образом, основным является умение находить градиентов выбранной модели вдоль ее весов.
-
-\section{Датасет}
-В качестве примера далее мы возьмем модельный датасет MNIST \cite{LeCun1998}, который представляет из себя просто набор 60000 рукописных цифр с их подписями:
-
-%begin{figure}
-%	\includegraphics[width=0.7\textwidth]{mnist_sample}
-%\end{figure}
-
-В коде 
 
 
 
@@ -141,8 +141,39 @@
 	\frac{\partial }{\partial a^i_j} \sigma(a^i_j x^j)^i
 \end{equation}
 
-\section{Функция потерь}
+%\section{Функция потерь}
 
+
+\section{Датасет}
+В качестве примера далее мы возьмем модельный датасет MNIST \cite{LeCun1998}, который представляет из себя просто набор 60000 рукописных цифр с их подписями в тренировочной выборке и 10000 цифр в тестовой:
+
+%begin{figure}
+%	\includegraphics[width=0.7\textwidth]{mnist_sample}
+%\end{figure}
+
+В фреймворке PyTorch предусмотрено два примитива для работы с датасетами:
+Dataset и Dataloder \cite{Dataset}. Dataset хранит сами данные, т.е. пары $(X^i_j,y^j)$, а Dataloader позволяет облегчает индексирование по этому датасету.
+
+
+\section{Цикл обучения}
+Далее пойдут уже более инфраструктурные вещи, которые в принципе можно пропускать, на понимание устройства алгоритмов, лежащих в основе работы нейронных сетей они не скажутся.
+
+Постараемся смоделировать инфраструктуру вокруг обучения, предлагаемую фреймворком PyTorch.
+
+\begin{lstlisting}[language=Python,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	escapeinside={(*@}{@*)},
+	commentstyle=\color{greencomments},
+	keywordstyle=\color{bluekeywords},
+	stringstyle=\color{redstrings},
+	basicstyle=\ttfamily]
+	
+	from math import *
+\end{lstlisting}
 
 
 \newpage

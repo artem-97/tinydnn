@@ -1,9 +1,12 @@
 #include <iostream>
 
 #include "dataset.h"
-#include "dnn.h"
+// #include "dnn.h"
 
 int main() {
-  //   auto mnist_dataset = MNIST("../dataset/mnist");
+  // auto trainset = MNIST("../dataset/MNIST/train");
+  auto testset = MNIST("../dataset/MNIST/", false);
+  auto [x, y] = testset[20];
+  // for (auto&& e : x) std::cout << e << " ";
   return 0;
 }
