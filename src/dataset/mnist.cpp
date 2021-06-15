@@ -1,6 +1,4 @@
-#include "dataset.h"
-
-Dataset::Dataset(std::string path, bool train) {}
+#include "mnist.h"
 
 // Utility function for MNIST idx file format processing
 template <typename T>

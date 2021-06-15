@@ -14,8 +14,8 @@ project(${PROJECT_NAME} VERSION 0.1.0)
 
 #include_directories(src)
 
-#add_subdirectory(src/activation)
-#add_subdirectory(src/loss)
+#add_subdirectory(src/dataset)
+add_subdirectory(src/loss)
 #add_subdirectory(src/dnn)
 
 file(GLOB_RECURSE SRC_FILES src/*)

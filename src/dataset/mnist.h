@@ -1,17 +1,6 @@
 #pragma once
 
-#include <cassert>
-#include <climits>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <tuple>
-#include <vector>
-
-class Dataset {
- public:
-  Dataset(std::string path, bool train);
-};
+#include "dataset.h"
 
 class MNIST : public Dataset {
  public:
